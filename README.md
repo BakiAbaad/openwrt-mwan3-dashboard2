@@ -1,20 +1,63 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# 📦 لوحة التحكم المتقدمة لموازنة التحميل ومراقبة الخطوط (luci-app-mwan3-dashboard)
 
-# Run and deploy your AI Studio app
+شاشة مراقبة تفاعلية وذكية، مصممة بلغة عربية كاملة، ومهيأة للاندماج السريع كحزمة منفصلة مع أجهزة **OpenWrt** وواجهتي **LuCI** وثيمات شهيرة مثل **Argon Theme**.
 
-This contains everything you need to run your app locally.
+---
 
-View your app in AI Studio: https://ai.studio/apps/2e5e86f2-d00a-45d1-81c2-eacbeeab7403
+## ✨ المميزات الرئيسية
+- **دعم كامل للغة العربية والوضع الليلي الحالك (Dark Mode)** لراحة العين.
+- **كفاءة مطلقة واستهلاك يقارب 0% من المعالج**: الواجهة ثابتة وتعمل بالكامل على جانب المتصفح (Client-Side).
+- **سهل التثبيت**: حزمة مضغوطة ذكية بصيغة **`.ipk`** تثبت كافة الواجهات والملفات البرمجية (APIs) بضغطة زر واحدة.
+- **مراقبة فورية (Real-time)** للسرعات، وجودة المنافذ، ونسبة فقدان الحزم، واستخدام النظام.
 
-## Run Locally
+---
 
-**Prerequisites:**  Node.js
+## 🛠️ دليل بناء حزمة التثبيت الرسومية (`.ipk`)
 
+للحصول على ملف الحزمة الموحد والجاهز للتثبيت على أي موجه OpenWrt، اتبع الخطوات التالية في كمبيوترك المحمول:
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1. **بناء لوحة البيانات وتجميع الحزمة**:
+   لقد قمنا بتوفير سكريبت أتمتة يُدعى `package-ipk.sh` في جذر هذا المشروع؛ يمكنك تشغيله ببساطة مباشرة:
+   ```bash
+   chmod +x package-ipk.sh
+   ./package-ipk.sh
+   ```
+
+2. **تحليل النتيجة**:
+   تلقائياً، سيقوم السكريبت ببناء الواجهة الذكية باستخدام React/Vite ونسخ الملفات وضغط الأدلة لتظهر لك حزمة موحدة باسم:
+   `luci-app-mwan3-dashboard_1.0.0_all.ipk`
+
+---
+
+## 🚀 طريقة التثبيت على أي جهاز راوتر أو أكسس (Access Point)
+
+بمجرد الحصول على ملف الحزمة `.ipk` (سواء بنيته يدوياً أو قمت بتحميله من إصدارات **GitHub Releases** لمستودعك `openwrt-mwan3-dashboard2`):
+
+### الطريقة الأولى: التثبيت المباشر عبر بروتوكول SSH (موصى بها)
+1. قم بنسخ حزمة الـ `.ipk` إلى المجلد المؤقت في الراوتر `/tmp` باستخدام برامج مثل WinSCP أو MobaXterm أو سطر الأوامر:
+   ```bash
+   scp luci-app-mwan3-dashboard_1.0.0_all.ipk root@192.168.1.1:/tmp/
+   ```
+2. اتصل بجهاز الراوتر عبير بروتوكول SSH ونفذ أمر التثبيت التالي:
+   ```bash
+   opkg update
+   opkg install /tmp/luci-app-mwan3-dashboard_1.0.0_all.ipk
+   ```
+
+### الطريقة الثانية: التثبيت برابط مباشر من بريد GitHub الخاص بك
+في حال قمت بنشر الحزمة وإضافتها لـ GitHub Releases، يمكن تثبيتها بضغطة واحدة لأي مستخدم هكذا:
+```bash
+opkg update
+opkg install https://github.com/BakiAbaad/openwrt-mwan3-dashboard2/releases/download/v1.0.0/luci-app-mwan3-dashboard_1.0.0_all.ipk
+```
+
+---
+
+## 🔗 التصفح والاندماج مع ثيم Argon واجهة LuCI
+
+بعد تشغيل أمر التثبيت بنجاح، سيقوم السكريبت بإعادة تشغيل خادم الويب المدمج بالراوتر تلقائياً. يمكنك الاستمتاع باللوحة كاملة من خلال الذهاب للعنوان التالي:
+
+```text
+http://192.168.1.1/mwan3-dashboard
+```
+*(استبدل الآيبي `192.168.1.1` بآيبي الموجه المستهدف لتظهر لك اللوحة مندمجة تلقائياً بنفس المظهر المذهل والمنطقي).*

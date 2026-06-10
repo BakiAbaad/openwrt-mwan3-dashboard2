@@ -1,6 +1,6 @@
 Package: luci-app-mwan3-dashboard
 Version: 1.0.0
 Architecture: all
-Maintainer: BakiAbaad <git@github.com:BakiAbaad/openwrt-mwan3-dashboard.git>
+Maintainer: BakiAbaad <git@github.com:BakiAbaad/openwrt-mwan3-dashboard2.git>
 Depends: mwan3, rpcd, uhttpd
 Description: Arabic web dashboard for monitoring mwan3 load balancing with dark mode and charts, compatible with Argon and LuCI.
