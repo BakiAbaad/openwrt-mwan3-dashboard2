@@ -1,0 +1,6 @@
+{
+  "name": "OpenWrt MWAN3 Load-Balancing Dashboard",
+  "description": "لوحة تحكم ذكية وخفيفة الوزن ومخصصة بالكامل باللغة العربية لمراقبة وإدارة موازنة تحميل اتصالات شبكة OpenWrt MWAN3 في الوقت الفعلي مع توافقية عالية للأجهزة ذات الموارد المحدودة.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

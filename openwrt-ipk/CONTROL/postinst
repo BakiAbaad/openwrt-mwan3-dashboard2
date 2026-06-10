@@ -1,0 +1,10 @@
+#!/bin/sh
+# تحسين صلاحيات الملفات التنفيذية للـ API
+chmod +x /usr/libexec/rpcd/mwan3-dashboard-api
+
+# إعادة تشغيل الخدمات لتفعيل التعديلات
+/etc/init.d/rpcd restart
+/etc/init.d/uhttpd restart
+
+echo "تم تثبيت لوحة تحكم mwan3 بنجاح والاندماج مع واجهة LuCI وثيم Argon!"
+exit 0
